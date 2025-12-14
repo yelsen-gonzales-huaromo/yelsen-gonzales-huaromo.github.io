@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 140">
+  <defs>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0052ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon Symbol -->
+  <g>
+    <!-- Circle outline -->
+    <circle cx="60" cy="70" r="45" 
+            fill="none" 
+            stroke="url(#logoGrad)" 
+            stroke-width="2" 
+            opacity="0.3"/>
+    
+    <!-- Main "C" -->
+    <path d="M 85 40 
+             A 30 30 0 0 1 85 100
+             L 80 100
+             A 25 25 0 0 0 80 40
+             Z" 
+          fill="url(#logoGrad)"/>
+    
+    <!-- Digital lines -->
+    <line x1="30" y1="60" x2="45" y2="60" 
+          stroke="url(#logoGrad)" 
+          stroke-width="3" 
+          stroke-linecap="round"/>
+    <line x1="30" y1="70" x2="48" y2="70" 
+          stroke="url(#logoGrad)" 
+          stroke-width="3" 
+          stroke-linecap="round"/>
+    <line x1="30" y1="80" x2="45" y2="80" 
+          stroke="url(#logoGrad)" 
+          stroke-width="3" 
+          stroke-linecap="round"/>
+    
+    <!-- Tech dots -->
+    <circle cx="92" cy="55" r="2.5" fill="url(#logoGrad)"/>
+    <circle cx="92" cy="70" r="2.5" fill="url(#logoGrad)"/>
+    <circle cx="92" cy="85" r="2.5" fill="url(#logoGrad)"/>
+  </g>
+  
+  <!-- Brand Name -->
+  <text x="125" y="80" 
+        font-family="'Exo', 'Segoe UI', Arial, sans-serif" 
+        font-size="52" 
+        font-weight="700" 
+        fill="url(#logoGrad)" 
+        letter-spacing="-0.5">codeia</text>
+  
+  <!-- Separator Line -->
+  <line x1="125" y1="92" x2="340" y2="92" 
+        stroke="url(#logoGrad)" 
+        stroke-width="1" 
+        opacity="0.3"/>
+  
+  <!-- Tagline -->
+  <text x="125" y="110" 
+        font-family="'Exo', 'Segoe UI', Arial, sans-serif" 
+        font-size="13" 
+        font-weight="400" 
+        letter-spacing="3"
+        fill="url(#logoGrad)" 
+        opacity="0.8">CONSULTORÍA &amp; DESARROLLO</text>
+</svg>

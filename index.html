@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yelsen Gonzales Huaromo Yelsen - Portafolio</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <link href="https://fonts.googleapis.com/css?family=Exo:100,200,300,400" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- 🔒 Protección Anti-Clonado -->
+    <link rel="stylesheet" href="css/security.css">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.svg" alt="{codeia}" style="height: 40px; width: auto;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars" style="color: var(--text-primary); font-size: 1.5rem;"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#about">Sobre Mí</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Proyectos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#certificates">Certificaciones</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experiencia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+                    <li class="nav-item">
+                        <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-11">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8 hero-content" data-aos="fade-up">
+                            <h1 id="hero-title"></h1>
+                            <h1 id="hero-role"></h1>
+                            <p id="hero-text"></p>
+                            <div class="d-flex gap-3 mb-4">
+                                <a href="#projects" class="btn btn-primary-custom">Ver Proyectos</a>
+                                <a href="#" class="btn btn-outline-custom">Descargar CV</a>
+                            </div>
+                            <div class="social-stack" id="hero-socials">
+                                <!-- Social links will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <!-- Marquee Component (Separated) -->
+        <div id="marquee-container"></div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-11">
+                    <div class="row align-items-center">
+                        <!-- 3D Avatar Column -->
+                        <div class="col-lg-5 mb-5 mb-lg-0 text-center" data-aos="fade-right">
+                            <div class="about-image-container">
+                                <div class="image-glow"></div>
+                                <!-- Male Developer 3D Avatar -->
+                                <img src="https://cdni.iconscout.com/illustration/premium/thumb/web-development-2974925-2477356.png"
+                                    alt="Desarrollador 3D" class="img-fluid floating-avatar" id="about-avatar"
+                                    loading="lazy">
+                                <!-- Badge -->
+                                <div class="experience-badge floating-badge">
+                                    <span class="h3 mb-0">3+</span>
+                                    <span class="small">Años de<br>Experiencia</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content Column -->
+                        <div class="col-lg-7 ps-lg-5" data-aos="fade-left">
+                            <h4 class="about-greeting mb-2">HOLA, SOY</h4>
+                            <h2 class="about-name mb-4" id="about-name-display"></h2>
+
+                            <div class="about-text mb-4" id="about-description"></div>
+
+                            <div class="about-quote-box mb-4">
+                                <p class="mb-0 fst-italic" id="about-quote"></p>
+                            </div>
+
+                            <div class="d-flex gap-3 mb-5">
+                                <a href="#" class="btn btn-primary-custom"><i class="fas fa-download me-2"></i>Descargar
+                                    CV</a>
+                                <a href="#projects" class="btn btn-outline-custom"><i class="fas fa-eye me-2"></i>Ver
+                                    Proyectos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section (Separated) -->
+    <section id="projects" class="section showcase-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-11">
+                    <h2 class="section-title glitch-text" data-text="Proyectos Destacados" data-aos="fade-up">Proyectos
+                        Destacados</h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Soluciones reales que he
+                        construido</p>
+
+                    <!-- Projects Container -->
+                    <div id="projects-container" class="showcase-container">
+                        <!-- Projects will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="section bg-opacity-10">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-11">
+                    <h2 class="section-title glitch-text" data-text="Certificaciones" data-aos="fade-up">Certificaciones
+                    </h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Validación académica y
+                        profesional</p>
+
+                    <div class="row">
+                        <!-- Certificates Column -->
+                        <div class="col-lg-12">
+                            <div id="certificates-container" class="showcase-container">
+                                <!-- Certificates will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-11">
+                    <h2 class="section-title glitch-text" data-text="Educación Formal" data-aos="fade-up">Educación
+                        Formal</h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Formación académica</p>
+
+                    <div class="row">
+                        <!-- Education Column -->
+                        <div class="col-lg-12">
+                            <div class="row g-4" id="education-container">
+                                <!-- Education will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills / Tech Stack Section (Moved to top level) -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-11">
+                    <h2 class="section-title glitch-text" data-text="Tecnologías" data-aos="fade-up">Tecnologías</h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Herramientas y lenguajes que
+                        domino</p>
+
+                    <div id="techstack-container" class="tech-stack-container">
+                        <!-- Skills will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-11">
+                    <h2 class="section-title glitch-text" data-text="Experiencia Profesional" data-aos="fade-up">
+                        Experiencia Profesional</h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Mi trayectoria laboral a través
+                        del tiempo</p>
+
+                    <!-- Timeline Structure -->
+                    <div id="experience-timeline" class="timeline">
+                        <!-- Experience will be loaded here as timeline items -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-11">
+                    <h2 class="section-title glitch-text" data-text="Conecta Conmigo" data-aos="fade-up">Conecta Conmigo
+                    </h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">¿Tienes un proyecto en mente o
+                        quieres dejar un comentario?</p>
+
+
+                    <div class="row g-4">
+                        <!-- Contact Form -->
+                        <div class="col-lg-6">
+                            <div class="contact-card h-100" data-aos="fade-right">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="icon-box-sm bg-primary text-white rounded-circle me-3 d-flex align-items-center justify-content-center"
+                                        style="width: 50px; height: 50px;">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </div>
+                                    <h3 class="h4 mb-0">Envíame un Mensaje</h3>
+                                </div>
+                                <p class="text-secondary mb-4">¿Tienes alguna pregunta o propuesta? Escríbeme y te
+                                    responderé lo antes posible.</p>
+
+                                <form id="contact-form">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Tu nombre">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="tu@email.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message" class="form-label">Mensaje</label>
+                                        <textarea class="form-control" id="message" rows="4"
+                                            placeholder="¿Cómo puedo ayudarte?"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary-custom w-100">
+                                        <i class="fas fa-paper-plane me-2"></i>Enviar Mensaje
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Comments Panel -->
+                        <div class="col-lg-6">
+                            <div class="contact-card h-100" data-aos="fade-left">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="icon-box-sm bg-success text-white rounded-circle me-3 d-flex align-items-center justify-content-center"
+                                        style="width: 50px; height: 50px;">
+                                        <i class="fas fa-comments"></i>
+                                    </div>
+                                    <h3 class="h4 mb-0">Deja un Comentario</h3>
+                                </div>
+                                <p class="text-secondary mb-4">Comparte tus pensamientos o feedback sobre mi portafolio.
+                                </p>
+
+                                <!-- Comment Form -->
+                                <form id="comment-form" class="mb-4">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" id="comment-name"
+                                            placeholder="Tu Nombre" aria-label="Tu Nombre">
+                                    </div>
+                                    <div class="mb-3">
+                                        <textarea class="form-control" id="comment-text" rows="2"
+                                            placeholder="Escribe tu comentario..."></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-custom w-100">
+                                        <i class="fas fa-comment-dots me-2"></i>Publicar Comentario
+                                    </button>
+                                </form>
+
+                                <!-- Comments List -->
+                                <div class="comments-list" id="comments-container">
+                                    <!-- Comments will be loaded here -->
+                                    <div class="text-center text-muted py-3">
+                                        <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+                                        <span class="ms-2">Cargando comentarios...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Media Cards (Horizontal) -->
+                    <div class="row mt-5 justify-content-center g-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="col-12 text-center mb-2">
+                            <h2 class="section-title glitch-text" data-text="Mis Redes Sociales" data-aos="fade-up">Mis
+                                Redes Sociales</h2>
+                        </div>
+
+                        <!-- GitHub -->
+                        <div class="col-lg-3 col-md-6">
+                            <a href="#" target="_blank" class="social-card-link">
+                                <div class="social-card github">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fab fa-github social-icon-large"></i>
+                                        <div class="social-info">
+                                            <h5>GitHub</h5>
+                                            <span>Seguir en GitHub</span>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-share arrow-icon"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- LinkedIn -->
+                        <div class="col-lg-3 col-md-6">
+                            <a href="#" target="_blank" class="social-card-link">
+                                <div class="social-card linkedin">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fab fa-linkedin-in social-icon-large"></i>
+                                        <div class="social-info">
+                                            <h5>LinkedIn</h5>
+                                            <span>Seguir en LinkedIn</span>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-share arrow-icon"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Instagram -->
+                        <div class="col-lg-3 col-md-6">
+                            <a href="#" target="_blank" class="social-card-link">
+                                <div class="social-card instagram">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fab fa-instagram social-icon-large"></i>
+                                        <div class="social-info">
+                                            <h5>Instagram</h5>
+                                            <span>Seguir en Instagram</span>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-share arrow-icon"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- TikTok -->
+                        <div class="col-lg-3 col-md-6">
+                            <a href="#" target="_blank" class="social-card-link">
+                                <div class="social-card tiktok">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fab fa-tiktok social-icon-large"></i>
+                                        <div class="social-info">
+                                            <h5>TikTok</h5>
+                                            <span>Seguir en TikTok</span>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-share arrow-icon"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> {codeia} | Consultoría & Desarrollo. Todos los derechos
+                reservados.</p>
+        </div>
+    </footer>
+
+
+
+    <!-- All Projects Modal -->
+    <div class="modal fade" id="allProjectsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content modal-glass">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title text-gradient">Todos los Proyectos</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4" id="all-projects-container">
+                        <!-- Content injected via JS -->
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-outline-light rounded-pill"
+                        data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Certificates Modal -->
+    <div class="modal fade" id="allCertificatesModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content modal-glass">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title text-gradient">Todas las Certificaciones</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-4" id="all-certificates-container">
+                        <!-- Content injected via JS -->
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-outline-light rounded-pill"
+                        data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Certificate Modal (Image/PDF) -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content modal-glass border-0">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title text-white" id="viewModalTitle">Vista Previa</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0 d-flex justify-content-center align-items-center" id="modalViewBody"
+                    style="min-height: 500px; background: rgba(0,0,0,0.2);">
+                    <!-- Content injected via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- 🔒 SISTEMA DE SEGURIDAD - Debe cargarse PRIMERO -->
+    <script src="js/security.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- Data Files (Pure Data Only) -->
+    <!-- Load data FIRST -->
+    <script src="data/tech-icons.js"></script>
+    <script src="data/social-icons.js"></script>
+    <script src="data/profile.js"></script>
+    <script src="data/skills.js"></script>
+    <script src="data/certificates.js"></script>
+    <script src="data/projects.js"></script>
+    <script src="data/experience.js"></script>
+    <script src="data/education.js"></script>
+    <script src="data/blog-posts.js"></script>
+    <script src="data/marquee.js"></script>
+    <script src="data/comments.js"></script>
+
+    <!-- Helper Functions (Load as regular scripts to expose globally) -->
+    <script src="js/utils/TechIconsHelper.js" type="module"></script>
+    <script src="js/utils/SocialIconsHelper.js" type="module"></script>
+    <script src="js/utils/MarqueeHelper.js" type="module"></script>
+    <script src="js/utils/CommentsHelper.js" type="module"></script>
+
+    <!-- Main Application (Modular) -->
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

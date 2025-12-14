@@ -1,0 +1,21 @@
+{
+  "name": "codeia-portfolio-security",
+  "version": "1.0.0",
+  "description": "Sistema de seguridad para portafolio {codeia}",
+  "scripts": {
+    "obfuscate": "javascript-obfuscator js --output dist/js --compact true --control-flow-flattening true --dead-code-injection true --debug-protection true --disable-console-output true",
+    "build": "npm run obfuscate",
+    "dev": "echo 'Modo desarrollo - sin ofuscación'"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^4.0.0"
+  },
+  "keywords": [
+    "security",
+    "anti-clone",
+    "protection"
+  ],
+  "author": "Yelsen Gonzales Huaromo - {codeia}",
+  "license": "UNLICENSED",
+  "private": true
+}

@@ -1,0 +1,95 @@
+/* ============================================
+   SISTEMA DE PROTECCIÓN ANTI-CLONADO
+   {codeia} - Consultoría & Desarrollo
+   ============================================ */
+
+/* Deshabilitar selección en elementos de código y estructura */
+pre,
+code,
+script,
+style {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Permitir selección en elementos de contenido para UX */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+span,
+a {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Permitir selección en inputs y textareas */
+input,
+textarea,
+[contenteditable="true"] {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}
+
+/* Protección contra impresión de página completa */
+@media print {
+    body::before {
+        content: "© {codeia} - Consultoría & Desarrollo - Todos los derechos reservados";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        background: #000;
+        color: #00d4ff;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        z-index: 9999;
+    }
+}
+
+/* Marca de agua invisible (solo visible al copiar) */
+body::after {
+    content: "© {codeia} - Este contenido está protegido";
+    position: absolute;
+    opacity: 0;
+    font-size: 0;
+    pointer-events: none;
+}
+
+/* Protección contra herramientas de scraping */
+.anti-scraping-detector {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Ocultar elementos cuando DevTools está abierto */
+@media (max-width: 0px) {
+    body::before {
+        content: "⚠️ DevTools detectado - {codeia}";
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.95);
+        color: #ff0066;
+        padding: 40px;
+        border-radius: 10px;
+        z-index: 999999;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+    }
+}
