@@ -1,35 +1,40 @@
-# <div align="center"> <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueXZueXpueXpueXpueXpueXpueXpueXpueXpueXpueXpueSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qgQUggAC3Pfv687qPC/giphy.gif" width="600px" /> <br /> 🚀 {codeia} - Portafolio Premium 🚀</div>
-
-<br />
+# <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=250&section=header&text=Yelsen%20Gonzales&fontSize=70&animation=fadeIn&fontAlignY=35" width="100%" />
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=yelsen-gonzales-huaromo&show_icons=true&theme=tokyonight&count_private=true" alt="GitHub Stats" height="180px" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=yelsen-gonzales-huaromo&theme=tokyonight" alt="Streak Stats" height="180px" />
+  <h3>🚀 Desarrollador Full Stack & Ingeniero de Software</h3>
+  <p><i>"Transformando código en soluciones digitales excepcionales"</i></p>
+</div>
+
+<div align="center">
+  <a href="https://linkedin.com/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+  <a href="https://github.com/yelsen-gonzales-huaromo"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
+  <a href="https://yelsen-gonzales-huaromo.github.io/"><img src="https://img.shields.io/badge/Portafolio-FF5733?style=for-the-badge&logo=google-chrome&logoColor=white" /></a>
 </div>
 
 <br />
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png" width="100%">
-</p>
+---
 
-## 👤 Sobre Mí
+## 👨‍💻 Sobre Mí
+
+Soy **Yelsen Fernandes Gonzales Huaromo**, un apasionado por la tecnología enfocado en el desarrollo de aplicaciones web de alto rendimiento. Mi objetivo es crear experiencias de usuario fluidas, seguras y visualmente impactantes.
+
+- 🏗️ Especialista en Arquitecturas Cloud y Microservicios.
+- 🔐 Enfocado en la ciberseguridad y protección de datos.
+- 🎨 Amante del diseño UI/UX moderno y minimalista.
+
+---
+
+## 📊 Estadísticas de GitHub
 
 <div align="center">
   <table border="0">
     <tr>
-      <td width="55%">
-        <h1 align="left">Yelsen F. Gonzales Huaromo</h1>
-        <p align="left"><b>Ingeniero de Software & Desarrollador Full Stack</b></p>
-        <p align="left">Transformo ideas complejas en realidades digitales escalables. Mi enfoque está en la creación de interfaces impactantes, arquitecturas sólidas y seguridad de alto nivel.</p>
-        <br />
-        <div align="left">
-          <a href="https://linkedin.com/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-          <a href="https://yelsen-gonzales-huaromo.github.io/"><img src="https://img.shields.io/badge/Portafolio-FF5733?style=for-the-badge&logo=google-chrome&logoColor=white" /></a>
-        </div>
+      <td>
+        <img src="https://github-readme-stats.vercel.app/api?username=yelsen-gonzales-huaromo&show_icons=true&theme=tokyonight&count_private=true&hide_border=true" height="170px" />
       </td>
-      <td width="45%" align="center">
-        <img src="https://cdni.iconscout.com/illustration/premium/thumb/web-development-2974925-2477356.png" width="300px" />
+      <td>
+        <img src="https://github-readme-streak-stats.herokuapp.com/?user=yelsen-gonzales-huaromo&theme=tokyonight&hide_border=true" height="170px" />
       </td>
     </tr>
   </table>
@@ -37,43 +42,44 @@
 
 ---
 
-## 🛠️ Mi Arsenal Tecnológico
+## 🛠️ Tecnologías & Herramientas
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=react,nextjs,ts,nodejs,express,mongodb,postgres,python,django,aws,docker,git,html,css,js,figma" />
+  <img src="https://skillicons.dev/icons?i=react,nextjs,ts,nodejs,express,mongodb,postgres,py,django,aws,docker,git,html,css,js,figma" />
 </p>
 
 ---
 
-## 🌟 Innovaciones del Proyecto
+## 🌟 Características de mi Portafolio
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png" width="60%">
-</div>
-
-| 🎨 Diseño Premium | 🔐 Seguridad Avanzada |
-| :--- | :--- |
-| • Interfaz Modern Glassmorphism | • Sistema Anti-Clonado avanzado |
-| • Modo Oscuro/Claro nativo | • Ofuscación de código Robusta |
-| • Animaciones fluidas con AOS | • Bloqueo de inspección y DevTools |
+<table>
+  <tr>
+    <td width="50%">
+      <b>🎨 Estética Premium</b><br />
+      Diseño con efecto <i>Glassmorphism</i>, modo oscuro inteligente y animaciones AOS para una experiencia inmersiva.
+    </td>
+    <td width="50%">
+      <b>🔒 Seguridad Blindada</b><br />
+      Protección avanzada contra clonado, ofuscación de código y sistema anti-debug para proteger la propiedad intelectual.
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 🚀 Despliegue Rápido
+## 🚀 Instalación Local
 
 ```bash
-# Paso 1: Clonar el ecosistema {codeia}
+# Clonar repositorio
 git clone https://github.com/yelsen-gonzales-huaromo/yelsen-gonzales-huaromo.github.io.git
 
-# Paso 2: Lanzar el servidor
+# Ejecutar con Live Server o
 npx serve .
 ```
 
 ---
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer" width="100%" />
-  <br />
-  <b>Hecho con ❤️ por Yelsen Gonzales</b><br />
-  <span>Innovación | Rendimiento | Seguridad</span>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=100&section=footer" width="100%" />
+  <p><b>© 2026 {codeia} | Innovación y Desarrollo</b></p>
 </div>
