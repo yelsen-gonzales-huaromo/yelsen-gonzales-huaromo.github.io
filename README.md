@@ -1,113 +1,106 @@
-# 🚀 {codeia} - Portafolio Profesional
-
-¡Bienvenido a mi portafolio web! Soy **Gonzales Huaromo Yelsen Fernández**, un apasionado **Ingeniero de Software & Full Stack Developer** dedicado a construir soluciones digitales de alto impacto con un enfoque en la innovación, el rendimiento y la seguridad.
+# <div align="center">🚀 {codeia} - Portafolio Premium</div>
 
 <div align="center">
-  <img src="images/logo.svg" alt="Codeia Logo" width="200px">
-  <p><i>"Transformando ideas en soluciones digitales innovadoras con código limpio y arquitecturas escalables."</i></p>
+  <img src="https://github-readme-stats.vercel.app/api?username=yelsen-gonzales-huaromo&show_icons=true&theme=tokyonight&count_private=true" alt="GitHub Stats" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=yelsen-gonzales-huaromo&theme=tokyonight" alt="Streak Stats" />
+</div>
+
+<br />
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png" width="100%">
+</div>
+
+## 👤 El Ingeniero detrás del Código
+
+<div align="center">
+  <table border="0">
+    <tr>
+      <td width="50%">
+        <h1>Gonzales Huaromo Yelsen Fernández</h1>
+        <p><b>Software Engineer & Full Stack Developer</b></p>
+        <p>Transformando ideas complejas en realidades digitales escalables con un enfoque en la experiencia de usuario y la seguridad de alto nivel.</p>
+        <br />
+        <a href="https://linkedin.com/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+        <a href="https://yelsen-gonzales-huaromo.github.io/"><img src="https://img.shields.io/badge/Portafolio-FF5733?style=for-the-badge&logo=google-chrome&logoColor=white" /></a>
+      </td>
+      <td width="50%" align="center">
+        <img src="https://cdni.iconscout.com/illustration/premium/thumb/web-development-2974925-2477356.png" width="350px" />
+      </td>
+    </tr>
+  </table>
 </div>
 
 ---
 
-## 🌟 Características Principales
+## ⚡ Tech Stack Dynamic
 
-Este portafolio no es solo una vitrina de proyectos, sino una demostración de capacidades técnicas avanzadas:
-
--   **🎨 Diseño Premium & Adaptable**: Interfaz moderna con animaciones fluidas (AOS) y totalmente responsiva para cualquier dispositivo.
--   **🌓 Modo Dual**: Soporte completo para temas claro y oscuro con persistencia.
--   **⚡ Carga Dinámica**: Los datos se gestionan de forma modular a través de archivos JavaScript, facilitando la actualización de contenido sin tocar el HTML principal.
--   **🔐 Seguridad Integrada**: Sistema de protección anti-clonado y protección de consola para asegurar la integridad de la propiedad intelectual.
--   **🧩 Arquitectura Modular**: Código organizado en componentes reutilizables y utilidades optimizadas.
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=react,nextjs,ts,nodejs,express,mongodb,postgres,python,django,aws,docker,git" />
+</p>
 
 ---
 
-## 💻 Tech Stack
+## 🛠️ Innovaciones del Portafolio
 
-### Frontend
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![TypeScript](https://img.shields.io/badge/typescript-%23007acc.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+<div align="center">
+  <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png" width="60%">
+</div>
 
-### Backend & Bases de Datos
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![Django](https://img.shields.io/badge/django-%23092e20.svg?style=for-the-badge&logo=django&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-
-### Herramientas & Cloud
-![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
-![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+<table>
+  <tr>
+    <td width="50%">
+      <h3>🎨 Diseño Futurista</h3>
+      <ul>
+        <li>Interfaz Glassmorphism ultra-limpia</li>
+        <li>Modo Oscuro con persistencia local</li>
+        <li>Animaciones AOS suaves y fluidas</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h3>🔐 Seguridad Robusta</h3>
+      <ul>
+        <li>Protección Anti-Clone avanzada</li>
+        <li>Ofuscación de código JavaScript</li>
+        <li>Bloqueo de DevTools y clic derecho</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📂 Arquitectura del Sistema
 
-```bash
-├── css/                # Estilos divididos por componentes y animaciones
-├── data/               # "Base de datos" en archivos JS (Fácil mantenimiento)
-├── images/             # Activos visuales, logo y favicon
-├── js/                 # Lógica de la aplicación dividida en módulos
-│   ├── components/     # Renderizadores de componentes dinámicos
-│   ├── utils/          # Helpers para iconos, comentarios y marquees
-│   ├── app.js          # Punto de entrada principal
-│   └── security.js     # Sistema de protección
-└── index.html          # Estructura principal
+```mermaid
+graph TD
+    A[index.html] --> B[JS Modules]
+    B --> C[Data Layer]
+    B --> D[Security Engine]
+    B --> E[Render Components]
+    C --> F[JSON Data Buffers]
+    D --> G[Anti-Debug / Obfuscation]
 ```
 
 ---
 
-## 🚀 Instalación y Uso Local
-
-Para ejecutar este proyecto en tu entorno local:
-
-1.  **Clona el repositorio:**
-    ```bash
-    git clone https://github.com/yelsen-gonzales-huaromo/yelsen-gonzales-huaromo.github.io.git
-    ```
-2.  **Entra al directorio:**
-    ```bash
-    cd yelsen-gonzales-huaromo.github.io
-    ```
-3.  **Instala las dependencias (Opcional, solo para desarrollo):**
-    ```bash
-    npm install
-    ```
-4.  **Ejecuta un servidor local:** Puedes usar la extensión "Live Server" de VS Code o cualquier servidor estático:
-    ```bash
-    npx serve
-    ```
-
----
-
-## 🛠️ Desarrollo y Seguridad
-
-El proyecto utiliza un sistema de ofuscación para proteger el código en producción. Para generar la versión protegida (`dist/`):
+## 🚀 Despliegue Rápido
 
 ```bash
-npm run build
+# Clonar el ecosistema {codeia}
+git clone https://github.com/yelsen-gonzales-huaromo/yelsen-gonzales-huaromo.github.io.git
+
+# Lanzar servidor de desarrollo
+npx serve .
 ```
-
-*Nota: El sistema de seguridad incluye bloqueadores de clic derecho, atajos de inspección de código y protección de consola.*
-
----
-
-## 📬 Contacto
-
-¿Tienes un proyecto en mente o quieres charlar sobre tecnología?
-
--   **LinkedIn**: [Yelsen Gonzales](https://linkedin.com/)
--   **GitHub**: [@yelsen-gonzales-huaromo](https://github.com/yelsen-gonzales-huaromo)
--   **Web**: [Visita mi Portafolio](https://yelsen-gonzales-huaromo.github.io/)
 
 ---
 
 <div align="center">
-  Hecho con ❤️ por <b>Yelsen Gonzales</b> | © 2026 {codeia}
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=100&section=footer" width="100%" />
+</div>
+
+<div align="center">
+  <b>Hecho con ❤️ por Yelsen Gonzales</b><br />
+  <span>Innovación | Rendimiento | Seguridad</span>
 </div>
