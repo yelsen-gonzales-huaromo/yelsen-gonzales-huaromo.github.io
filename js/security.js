@@ -1,6 +1,6 @@
 /**
  * Aviso profesional de copyright
- * Yelsen Gonzales Huaromo — {codeia}
+ * Yelsen Gonzales Huaromo — YelDev
  * © 2025 Todos los derechos reservados
  */
 

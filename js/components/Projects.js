@@ -133,17 +133,11 @@ export function loadProjects() {
 
         return `
         <article class="proj-card" style="--accent-color: ${accent};">
-            <!-- Top: small icon badge -->
-            <div class="proj-card-icon" aria-hidden="true">
-                <i class="${primaryIcon}"></i>
-            </div>
-
             <!-- Center: large image area with gallery -->
             <div class="proj-card-image">
                 ${buildImageGallery(project.images, carouselId, fallback)}
                 <div class="proj-card-image-fallback"><i class="${primaryIcon}"></i></div>
                 <div class="proj-card-image-glow"></div>
-                ${imageCount > 1 ? `<span class="proj-card-image-count"><i class="fas fa-images"></i>${imageCount}</span>` : ''}
             </div>
 
             <!-- Body: title, tech, description, stats, buttons -->
@@ -159,13 +153,20 @@ export function loadProjects() {
                         <span>Ver Caso</span>
                         <i class="fas fa-arrow-right"></i>
                     </button>
-                    <button type="button"
-                            onclick="window.openProjectLiveDemo(${project.id})"
-                            class="proj-btn proj-btn--ghost">
-                        <span>Live Demo</span>
-                        <i class="fas fa-external-link-alt"></i>
-                    </button>
+                    ${project.liveDemo
+                        ? `<button type="button"
+                                onclick="window.openProjectLiveDemo(${project.id})"
+                                class="proj-btn proj-btn--ghost">
+                            <span>Live Demo</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>`
+                        : `<span class="proj-btn proj-btn--private" title="Repositorio privado — código disponible bajo solicitud">
+                            <i class="fas fa-lock"></i>
+                            <span>Privado</span>
+                        </span>`
+                    }
                 </div>
+
             </div>
         </article>
         `;
@@ -221,25 +222,81 @@ export function loadProjects() {
         const cs = project.caseStudy || {};
         const hasDemo = project.demoLink && project.demoLink !== '#';
 
-        // Header with title + badges + tagline + description
-        const badges = (cs.badges || []).map(b => `<span class="proj-detail-badge"><i class="fas fa-circle"></i>${escapeHtml(b)}</span>`).join('');
+        const imagesList = project.images || [];
+        const firstImage = imagesList[0] || 'https://via.placeholder.com/800x500?text=Proyecto';
+        
+        let galleryHTML = '';
+        if (imagesList.length > 0) {
+            const thumbnails = imagesList.map((img, i) => `
+                <div class="cs-thumb ${i === 0 ? 'is-active' : ''}" 
+                     data-index="${i}" 
+                     onclick="window.setCsActiveImage(this, ${i}, '${escapeHtml(img)}')">
+                    <img src="${img}" alt="Miniatura ${i + 1}" loading="lazy">
+                </div>
+            `).join('');
+
+            galleryHTML = `
+                <div class="cs-gallery-container" id="cs-gallery-${project.id}">
+                    <div class="cs-gallery-main-wrapper">
+                        <img id="cs-gallery-main-img" src="${firstImage}" alt="${escapeHtml(project.title)}" loading="lazy">
+                        <div class="cs-gallery-overlay">
+                            <span class="cs-gallery-counter"><span id="cs-gallery-counter-curr">1</span>/${imagesList.length}</span>
+                        </div>
+                        ${imagesList.length > 1 ? `
+                            <button class="cs-gallery-arrow cs-gallery-prev" onclick="window.navCsImage(-1, ${project.id})" aria-label="Anterior">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="cs-gallery-arrow cs-gallery-next" onclick="window.navCsImage(1, ${project.id})" aria-label="Siguiente">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        ` : ''}
+                        <div class="proj-detail-hero-glow"></div>
+                    </div>
+                    ${imagesList.length > 1 ? `
+                        <div class="cs-gallery-thumbnails">
+                            ${thumbnails}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        } else {
+            galleryHTML = `
+                <div class="proj-detail-hero-image">
+                    <img src="https://via.placeholder.com/800x500?text=Proyecto" alt="${escapeHtml(project.title)}" loading="lazy">
+                    <div class="proj-detail-hero-glow"></div>
+                </div>
+            `;
+        }
+
+        // Tech stack items directly for Hero
+        const techStackItems = (project.tags || []).map(tag => `
+            <div class="proj-detail-tech-item" title="${escapeHtml(tag)}">
+                <i class="${getTechIconClass(tag)}" style="color: ${getTechBrandColor(tag)};"></i>
+                <span>${escapeHtml(tag)}</span>
+            </div>
+        `).join('');
+
+        const techStackSectionInHero = techStackItems ? `
+            <div class="proj-detail-hero-tech">
+                <div class="proj-detail-tech-row">${techStackItems}</div>
+            </div>
+        ` : '';
+
         const headerHTML = `
             <div class="proj-detail-hero">
                 <div class="proj-detail-hero-text">
-                    <span class="proj-detail-featured">${cs.featured ? '<i class="fas fa-circle"></i>Proyecto Destacado' : '<i class="far fa-circle"></i>Caso de Estudio'}</span>
                     <h1 class="proj-detail-title">${escapeHtml(project.title)}</h1>
                     ${project.tagline ? `<p class="proj-detail-tagline">${escapeHtml(project.tagline)}</p>` : ''}
                     <p class="proj-detail-desc">${escapeHtml(cs.fullDescription || project.description || '')}</p>
-                    ${badges ? `<div class="proj-detail-badges">${badges}</div>` : ''}
+                    ${techStackSectionInHero}
                 </div>
-                <div class="proj-detail-hero-image">
-                    <img src="${(project.images && project.images[0]) || ''}" alt="${escapeHtml(project.title)}" loading="lazy">
-                    <div class="proj-detail-hero-glow"></div>
+                <div class="proj-detail-hero-gallery">
+                    ${galleryHTML}
                 </div>
             </div>
         `;
 
-        // 3-column section: challenge | solution | results
+        // 3-column section: challenge | solution+architecture | results
         const challengeBullets = (cs.challenge?.bullets || []).map(b =>
             `<li><i class="fas fa-circle"></i><span>${escapeHtml(b)}</span></li>`
         ).join('');
@@ -253,18 +310,39 @@ export function loadProjects() {
             </div>
         ` : '';
 
-        const codeSnippet = cs.solution?.code?.snippet
-            ? `<pre class="proj-detail-code"><code>${escapeHtml(cs.solution.code.snippet)}</code></pre>`
-            : '';
+        // Architecture column nodes (compact horizontal layout with colorful icons)
+        const archItemsCompact = (cs.architecture || []).map((node, index, arr) => {
+            const colors = ['#38bdf8', '#c084fc', '#34d399', '#fb923c', '#f472b6', '#fcd34d', '#60a5fa'];
+            const nodeColor = colors[index % colors.length];
+            return `
+                <div class="cs-arch-node-compact" style="--node-color: ${nodeColor}; --node-index: ${index};">
+                    <div class="cs-arch-icon-compact">
+                        <i class="${node.icon || 'fas fa-cube'}"></i>
+                    </div>
+                    <div class="cs-arch-info-compact">
+                        <span class="cs-arch-name-compact">${escapeHtml(node.name)}</span>
+                        ${node.description ? `<span class="cs-arch-desc-compact">${escapeHtml(node.description)}</span>` : ''}
+                    </div>
+                </div>
+                ${index < arr.length - 1 ? `
+                    <div class="cs-arch-connector-compact">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                ` : ''}
+            `;
+        }).join('');
 
-        const solutionCol = cs.solution ? `
+        const solutionAndArchCol = `
             <div class="proj-detail-col">
                 <div class="proj-detail-col-num">02</div>
                 <h3 class="proj-detail-col-title"><i class="fas fa-puzzle-piece"></i>La Solución</h3>
-                ${cs.solution.description ? `<p class="proj-detail-col-desc">${escapeHtml(cs.solution.description)}</p>` : ''}
-                ${codeSnippet}
+                ${cs.solution?.description ? `<p class="proj-detail-col-desc">${escapeHtml(cs.solution.description)}</p>` : ''}
+                ${archItemsCompact ? `
+                    <h4 class="cs-arch-sub-title"><i class="fas fa-sitemap"></i>Arquitectura</h4>
+                    <div class="cs-arch-flow-compact">${archItemsCompact}</div>
+                ` : ''}
             </div>
-        ` : '';
+        `;
 
         const resultsHTML = (cs.results || []).map(r => `
             <div class="proj-detail-result">
@@ -287,48 +365,15 @@ export function loadProjects() {
             </div>
         ` : '';
 
-        const threeColSection = (challengeCol || solutionCol || resultsCol) ? `
+        const threeColSection = (challengeCol || solutionAndArchCol || resultsCol) ? `
             <div class="proj-detail-three-col">
                 ${challengeCol}
-                ${solutionCol}
+                ${solutionAndArchCol}
                 ${resultsCol}
             </div>
         ` : '';
 
-        // Tech stack row
-        const techStackItems = (project.tags || []).map(tag => `
-            <div class="proj-detail-tech-item">
-                <i class="${getTechIconClass(tag)}" style="color: ${getTechBrandColor(tag)};"></i>
-                <span>${escapeHtml(tag)}</span>
-            </div>
-        `).join('');
-
-        const techStackSection = techStackItems ? `
-            <div class="proj-detail-tech-section">
-                <h3 class="proj-detail-section-title"><i class="fas fa-layer-group"></i>Tech Stack</h3>
-                <div class="proj-detail-tech-row">${techStackItems}</div>
-            </div>
-        ` : '';
-
-        // Architecture nodes (simple chip row)
-        const archItems = (cs.architecture || []).map(node => `
-            <div class="proj-detail-arch-node">
-                <div class="proj-detail-arch-icon"><i class="${node.icon || 'fas fa-cube'}"></i></div>
-                <div class="proj-detail-arch-text">
-                    <span class="proj-detail-arch-name">${escapeHtml(node.name)}</span>
-                    ${node.description ? `<span class="proj-detail-arch-desc">${escapeHtml(node.description)}</span>` : ''}
-                </div>
-            </div>
-        `).join('');
-
-        const archSection = archItems ? `
-            <div class="proj-detail-arch-section">
-                <h3 class="proj-detail-section-title"><i class="fas fa-sitemap"></i>Arquitectura del Sistema</h3>
-                <div class="proj-detail-arch-flow">${archItems}</div>
-            </div>
-        ` : '';
-
-        // Footer actions — open live demo always (mock page) when liveDemo data exists
+        // Footer actions — show back button, and optionally live demo button if available
         const hasLiveDemo = !!project.liveDemo;
         const footerActions = `
             <div class="proj-detail-footer">
@@ -346,15 +391,9 @@ export function loadProjects() {
         `;
 
         return `
-            <button type="button" onclick="window.backToProjects()" class="proj-detail-back-link">
-                <i class="fas fa-arrow-left"></i>
-                <span>Volver a Proyectos</span>
-            </button>
             <div class="proj-detail-page" style="--accent-color: ${accent};">
                 ${headerHTML}
                 ${threeColSection}
-                ${techStackSection}
-                ${archSection}
                 ${footerActions}
             </div>
         `;
@@ -413,6 +452,77 @@ export function loadProjects() {
         const inst = bootstrap.Modal.getInstance(openModalEl);
         if (inst) inst.hide();
         return openModalEl.id;
+    };
+
+    // Expose Global Helper Functions for Case Study Gallery & Copy Buttons
+    window.setCsActiveImage = function(thumbEl, index, imgSrc) {
+        if (!thumbEl) return;
+        const container = thumbEl.closest('.cs-gallery-container');
+        if (!container) return;
+
+        const mainImg = container.querySelector('#cs-gallery-main-img');
+        if (mainImg) {
+            mainImg.style.opacity = '0.3';
+            setTimeout(() => {
+                mainImg.src = imgSrc;
+                mainImg.style.opacity = '1';
+            }, 150);
+        }
+
+        container.querySelectorAll('.cs-thumb').forEach(t => t.classList.remove('is-active'));
+        thumbEl.classList.add('is-active');
+
+        const counterCurr = container.querySelector('#cs-gallery-counter-curr');
+        if (counterCurr) {
+            counterCurr.textContent = index + 1;
+        }
+    };
+
+    window.navCsImage = function(direction, projectId) {
+        const container = document.getElementById(`cs-gallery-${projectId}`);
+        if (!container) return;
+
+        const thumbs = Array.from(container.querySelectorAll('.cs-thumb'));
+        if (thumbs.length <= 1) return;
+
+        const activeIndex = thumbs.findIndex(t => t.classList.contains('is-active'));
+        let nextIndex = activeIndex + direction;
+
+        if (nextIndex < 0) nextIndex = thumbs.length - 1;
+        if (nextIndex >= thumbs.length) nextIndex = 0;
+
+        const nextThumb = thumbs[nextIndex];
+        if (nextThumb) {
+            nextThumb.click();
+        }
+    };
+
+    window.copyCsCodeSnippet = function(button) {
+        if (!button) return;
+        const container = button.closest('.cs-code-editor');
+        if (!container) return;
+        const textarea = container.querySelector('.cs-code-raw-val');
+        if (!textarea) return;
+
+        navigator.clipboard.writeText(textarea.value).then(() => {
+            const icon = button.querySelector('i');
+            const span = button.querySelector('span');
+            if (icon && span) {
+                icon.className = 'fas fa-check';
+                icon.style.color = '#22c55e';
+                span.textContent = '¡Copiado!';
+                button.classList.add('is-copied');
+
+                setTimeout(() => {
+                    icon.className = 'far fa-copy';
+                    icon.style.color = '';
+                    span.textContent = 'Copiar';
+                    button.classList.remove('is-copied');
+                }, 2000);
+            }
+        }).catch(err => {
+            console.error('Error al copiar el código:', err);
+        });
     };
 
     window.openProjectCaseStudy = function (projectId) {
@@ -588,10 +698,6 @@ export function loadProjects() {
         `).join('');
 
         return `
-            <button type="button" onclick="window.backToProjects()" class="proj-detail-back-link">
-                <i class="fas fa-arrow-left"></i>
-                <span>Volver a Proyectos</span>
-            </button>
             <div class="proj-detail-page proj-demo-page" style="--accent-color: ${accent};">
                 <!-- Status banner -->
                 <div class="demo-status-banner">

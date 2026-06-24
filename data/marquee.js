@@ -5,11 +5,12 @@ const marqueeData = {
     // Main marquee texts
     texts: [
         'SOBRE MÍ',
-        'PERFIL PROFESIONAL',
         'INGENIERO DE SISTEMAS E INFORMÁTICA',
-        'ARQUITECTO DE SOFTWARE',
         'DESARROLLADOR FULL STACK',
-        'ESPECIALISTA EN CLOUD'
+        'BACKEND DEVELOPER',
+        'CLOUD & DEVOPS ENGINEER',
+        'ARQUITECTO DE SOFTWARE',
+        'APIS REST & MICROSERVICIOS'
     ],
 
     // Separator character

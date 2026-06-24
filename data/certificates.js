@@ -1,6 +1,6 @@
 const certificatesData = [
     {
-        id: 1,
+        id: 2,
         title: "Cloud Computing: AWS · Azure · Google Cloud",
         subtitle: "Fundamentos de Nube",
         issuer: "Universidad Nacional de Ingeniería · UNI",
@@ -17,12 +17,12 @@ const certificatesData = [
             { name: "Seguridad", icon: "fas fa-shield-halved", description: "Identidad, acceso y modelo de confianza cero." }
         ],
         quote: "Esta certificación me da las bases para diseñar soluciones cloud robustas y multi-plataforma.",
-        image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+        image: "images/cert-previews/cloud-computing-preview.jpg",
         type: "image",
-        link: "#"
+        link: "docs/certificados/CLOUD COMPUTING.pdf"
     },
     {
-        id: 2,
+        id: 3,
         title: "SQL Server · Base de Datos 2",
         subtitle: "Procedimientos, Triggers y Cursores",
         issuer: "Universidad Nacional de Ingeniería · UNI",
@@ -39,12 +39,12 @@ const certificatesData = [
             { name: "Cursores y Funciones", icon: "fas fa-code", description: "Funciones escalares, tabla, agregación y ventana." }
         ],
         quote: "Domino la lógica de servidor en SQL Server para construir capas de datos eficientes.",
-        image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+        image: "images/cert-previews/sql-server-preview.jpg",
         type: "image",
-        link: "#"
+        link: "docs/certificados/SQL SERVER.pdf"
     },
     {
-        id: 3,
+        id: 4,
         title: "Machine Learning con Python",
         subtitle: "Aprendizaje Supervisado y No Supervisado",
         issuer: "Universidad Nacional de Ingeniería · UNI",
@@ -61,69 +61,176 @@ const certificatesData = [
             { name: "Algoritmos", icon: "fas fa-sitemap", description: "Árboles, bosques aleatorios y clustering." }
         ],
         quote: "Aplico técnicas de ML para resolver problemas de clasificación y predicción con Python.",
-        image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+        image: "images/cert-previews/machine-learning-preview.jpg",
         type: "image",
-        link: "#"
-    },
-    {
-        id: 4,
-        title: "Bachiller en Ingeniería de Sistemas e Informática",
-        subtitle: "Grado Académico",
-        issuer: "UNASAM · Santiago Antúnez de Mayolo",
-        issuerShort: "UNASAM",
-        date: "Oct 2025",
-        level: "Grado Académico Oficial",
-        certificateNumber: "Res. 915-2025-UNASAM",
-        description: "Grado académico oficial otorgado por la Universidad Nacional Santiago Antúnez de Mayolo tras 5 años de formación en ingeniería de sistemas e informática. Modalidad presencial, X ciclo completado.",
-        skills: [
-            { name: "Ingeniería de Software", icon: "fas fa-laptop-code", description: "Desarrollo full-stack y arquitectura de sistemas." },
-            { name: "Bases de Datos", icon: "fas fa-database", description: "Modelado, administración y optimización de BD." },
-            { name: "Gestión de Proyectos", icon: "fas fa-tasks", description: "Metodologías ágiles y gestión de proyectos tech." }
-        ],
-        quote: "Esta formación sólida es la base de todo mi trabajo profesional como ingeniero de sistemas.",
-        image: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
-        type: "image",
-        link: "#"
+        link: "docs/certificados/MACHINE LEARNING.pdf"
     },
     {
         id: 5,
-        title: "Prácticas Pre-Profesionales en Gestión de Sistemas",
-        subtitle: "Oficina de Tecnologías de Información",
-        issuer: "UNASAM · Oficina de Tecnologías de Información",
-        issuerShort: "UNASAM",
-        date: "Jul 2025",
-        hours: "400 horas",
-        level: "Constancia Oficial",
-        description: "400 horas de práctica pre-profesional en la OGTISE de la UNASAM. Soporte técnico, gestión de bases de datos institucionales y desarrollo de módulos internos para la Unidad de Gestión de Sistemas.",
+        title: "C# Fundamental con Microsoft",
+        subtitle: "Certificación de Desarrollador Oficial",
+        issuer: "freeCodeCamp & Microsoft",
+        issuerShort: "Microsoft",
+        date: "Ago 2025",
+        level: "Certificación de Especialidad",
+        certificateNumber: "Foundational C# with Microsoft",
+        description: "Certificación oficial emitida en conjunto por Microsoft y freeCodeCamp. Valida competencias en desarrollo C#, lógica de programación estructurada y orientada a objetos en entornos .NET.",
         skills: [
-            { name: "Gestión de Sistemas", icon: "fas fa-server", description: "Administración de sistemas internos y trazabilidad de activos." },
-            { name: "Soporte Técnico", icon: "fas fa-headset", description: "Soporte especializado a usuarios académicos." },
-            { name: "Desarrollo", icon: "fas fa-code", description: "Módulos internos y scripts de automatización." }
+            { name: "C# Programming", icon: "fas fa-code", description: "Lógica avanzada y estructuras de datos nativas en C#." },
+            { name: "Programación Orientada a Objetos", icon: "fas fa-cubes", description: "Clases, interfaces, herencia y polimorfismo." },
+            { name: "Compilación y Depuración", icon: "fas fa-bug-slash", description: "Uso de depuradores y diagnóstico de código en C#." }
         ],
-        quote: "Mis prácticas me dieron experiencia real en entornos públicos con sistemas críticos.",
-        image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+        quote: "Esta certificación oficial de Microsoft respalda mi base sólida de programación backend en C#.",
+        image: "images/cert-previews/csharp-preview.jpg",
         type: "image",
-        link: "#"
+        link: "https://freecodecamp.org/certification/yelsen/foundational-c-sharp-with-microsoft"
     },
     {
         id: 6,
-        title: "Inglés Básico A1",
-        subtitle: "Comprensión y Producción Oral/Escrita",
-        issuer: "UNASAM · Centro de Idiomas",
-        issuerShort: "UNASAM",
-        date: "Sep 2023",
-        hours: "285 horas",
-        level: "Nivel Básico A1",
-        certificateNumber: "0571.1.23-0571",
-        description: "Programa intensivo de 285 horas académicas en inglés básico, certificado oficialmente por la Vicerrectoría Académica de UNASAM. Comprensión y producción oral y escrita en contextos cotidianos y profesionales.",
+        title: "Backend con Java: Seguridad Web con Spring Security",
+        subtitle: "Especialización de Seguridad en Spring Boot",
+        issuer: "Platzi",
+        issuerShort: "Platzi",
+        date: "Ago 2025",
+        hours: "13 horas",
+        level: "Certificación Online de Aprobación",
+        certificateNumber: "0bb829af-4d2e-4cb3-81b0-2ef4bc7d9e8a",
+        description: "Formación especializada en la implementación de autenticación y autorización en microservicios y APIs Java Spring Boot. Configuración de filtros, roles, JSON Web Tokens (JWT) y prevención de vulnerabilidades OWASP.",
         skills: [
-            { name: "Conversación", icon: "fas fa-comments", description: "Comunicación oral en contextos cotidianos." },
-            { name: "Comprensión Auditiva", icon: "fas fa-headphones", description: "Escucha activa y comprensión de inglés básico." },
-            { name: "Lectura y Escritura", icon: "fas fa-book-open", description: "Lectura comprensiva y producción escrita." }
+            { name: "Spring Security", icon: "fas fa-shield-halved", description: "Configuración de seguridad, filtros interceptores y políticas CORS." },
+            { name: "JWT Tokens", icon: "fas fa-key", description: "Generación, verificación y expiración segura de tokens portadores." },
+            { name: "Autorización por Roles", icon: "fas fa-user-shield", description: "Control de acceso granular a endpoints basado en privilegios." }
         ],
-        quote: "Cuento con base sólida en inglés para comunicarme en contextos técnicos.",
-        image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80",
+        quote: "Aplico mecanismos de seguridad del estándar de la industria en todas mis aplicaciones Java.",
+        image: "images/cert-previews/backend-java-preview.jpg",
         type: "image",
-        link: "#"
+        link: "docs/certificados/BACKEND CON JAVA.pdf"
+    },
+    {
+        id: 7,
+        title: "Curso de Java Spring",
+        subtitle: "Programación con Framework Spring",
+        issuer: "Platzi",
+        issuerShort: "Platzi",
+        date: "Ago 2025",
+        hours: "11 horas",
+        level: "Certificación Online de Aprobación",
+        certificateNumber: "733a8de0-8b27-42d0-8aef-69a3914d778d",
+        description: "Formación en Spring Framework para el desarrollo de APIs RESTful robustas. Incluye Spring Boot, Spring Data JPA, inyección de dependencias y buenas prácticas de arquitectura de microservicios.",
+        skills: [
+            { name: "Spring Boot APIs", icon: "fas fa-server", description: "Controladores REST, inyección de dependencias y Spring Data JPA." },
+            { name: "Microservicios", icon: "fas fa-network-wired", description: "Arquitectura distribuida con Spring Cloud." },
+            { name: "Java Avanzado", icon: "fab fa-java", description: "Lambdas, Streams y programación funcional." }
+        ],
+        quote: "Conozco a profundidad las capacidades del framework Spring para crear servicios empresariales.",
+        image: "images/cert-previews/java-spring-preview.jpg",
+        type: "image",
+        link: "docs/certificados/JAVA SPRING.pdf"
+    },
+
+
+    {
+        id: 10,
+        title: "Curso de Angular: Unit Testing para Servicios",
+        subtitle: "Pruebas Unitarias en Angular",
+        issuer: "Platzi",
+        issuerShort: "Platzi",
+        date: "Ago 2025",
+        hours: "19 horas",
+        level: "Certificación Online de Aprobación",
+        certificateNumber: "5ab67f85-8505-47da-b943-cd7b914cac6c",
+        description: "Formación en testing de servicios Angular con Jest y Jasmine. Cubre mocks, spies, testing de observables, servicios HTTP y buenas prácticas de pruebas unitarias en aplicaciones Angular.",
+        skills: [
+            { name: "Unit Testing", icon: "fas fa-vial", description: "Pruebas unitarias con Jasmine y Jest en Angular." },
+            { name: "Mocks & Spies", icon: "fas fa-eye", description: "Simulación de dependencias y verificación de comportamientos." },
+            { name: "Testing HTTP", icon: "fas fa-network-wired", description: "Pruebas de servicios con HttpClientTestingModule." }
+        ],
+        quote: "El testing es parte esencial de mi flujo de desarrollo para asegurar la calidad del software.",
+        image: "images/cert-previews/angular-preview.jpg",
+        type: "image",
+        link: "docs/certificados/ANGULAR.pdf"
+    },
+    {
+        id: 11,
+        title: "Autenticación con Angular",
+        subtitle: "Guards, Interceptores y Auth Flow",
+        issuer: "Platzi",
+        issuerShort: "Platzi",
+        date: "Ago 2025",
+        hours: "12 horas",
+        level: "Certificación Online de Aprobación",
+        certificateNumber: "bdb564e4-fb71-4848-91af-6acd49ff075b",
+        description: "Implementación de flujos de autenticación y autorización en aplicaciones Angular. Cubre Route Guards, interceptores HTTP, manejo de tokens JWT y protección de rutas por roles.",
+        skills: [
+            { name: "Route Guards", icon: "fas fa-shield-halved", description: "Protección de rutas con CanActivate y CanLoad." },
+            { name: "JWT en Angular", icon: "fas fa-key", description: "Manejo de tokens Bearer e interceptores HTTP." },
+            { name: "Auth Flow", icon: "fas fa-user-lock", description: "Login, logout y refresh token en el lado cliente." }
+        ],
+        quote: "Implemento autenticación segura de extremo a extremo conectando backend Java con Angular.",
+        image: "images/cert-previews/autenticacion-preview.jpg",
+        type: "image",
+        link: "docs/certificados/AUTENTICACION.pdf"
+    },
+    {
+        id: 12,
+        title: "Angular Avanzado",
+        subtitle: "Arquitectura y Patrones Avanzados",
+        issuer: "Platzi",
+        issuerShort: "Platzi",
+        date: "Ago 2025",
+        hours: "16 horas",
+        level: "Certificación Online de Aprobación",
+        certificateNumber: "c3e91d59-8dc1-4b14-a1e6-4ad1587e4ca4",
+        description: "Profundización en Angular: arquitectura escalable con módulos lazy loading, state management con NgRx, optimización de rendimiento con OnPush y estrategias avanzadas de componentes.",
+        skills: [
+            { name: "NgRx State Management", icon: "fas fa-diagram-project", description: "Manejo de estado predecible con acciones, reducers y efectos." },
+            { name: "Lazy Loading", icon: "fas fa-bolt", description: "Carga diferida de módulos para optimizar el tiempo inicial." },
+            { name: "Arquitectura Escalable", icon: "fas fa-layer-group", description: "Smart/dumb components y patrones de diseño Angular." }
+        ],
+        quote: "Construyo aplicaciones Angular de alta escala con arquitectura limpia y rendimiento óptimo.",
+        image: "images/cert-previews/angular-avanzado-preview.jpg",
+        type: "image",
+        link: "docs/certificados/Angular Avanzado.pdf"
+    },
+    {
+        id: 13,
+        title: "Curso de TypeScript",
+        subtitle: "Tipado Estático y Programación Avanzada",
+        issuer: "Platzi",
+        issuerShort: "Platzi",
+        date: "Ago 2025",
+        hours: "13 horas",
+        level: "Certificación Online de Aprobación",
+        certificateNumber: "4c6e771b-bfe2-4c1a-b18d-9ec68ce2c385",
+        description: "Dominio completo de TypeScript: tipos básicos y avanzados, interfaces, genéricos, decoradores, enums y configuración de tsconfig para proyectos escalables en entornos Angular y Node.js.",
+        skills: [
+            { name: "Tipos y Generics", icon: "fas fa-code", description: "Sistema de tipos estático, unions, intersecciones y genéricos." },
+            { name: "Interfaces y Clases", icon: "fas fa-cubes", description: "OOP tipado con interfaces, abstractas y decoradores." },
+            { name: "Configuración TS", icon: "fas fa-gear", description: "tsconfig, strict mode y paths para proyectos de producción." }
+        ],
+        quote: "TypeScript es mi lenguaje principal en frontend, garantizando código robusto y mantenible.",
+        image: "images/cert-previews/typescript-preview.jpg",
+        type: "image",
+        link: "docs/certificados/TypeScript.pdf"
+    },
+    {
+        id: 14,
+        title: "Inspiring Study Conference with Google",
+        subtitle: "Participación Activa · Google for Education",
+        issuer: "Google for Education · Progressio",
+        issuerShort: "Google",
+        date: "2025",
+        hours: "80 horas",
+        level: "Certificado de Participación",
+        description: "Certificado de participación activa como asistente al curso de entrenamiento 'Inspiring Study Conference with Google'. Organizado por Progressio para América Latina con avalado de Google for Education y la Cámara Mundial de Conferencistas.",
+        skills: [
+            { name: "Google for Education", icon: "fab fa-google", description: "Herramientas y metodologías de aprendizaje con tecnología Google." },
+            { name: "Conferencia Internacional", icon: "fas fa-globe", description: "Participación en evento formativo de alcance latinoamericano." },
+            { name: "Productividad Digital", icon: "fas fa-laptop", description: "Técnicas de estudio inspirado con herramientas digitales." }
+        ],
+        quote: "Participo en eventos de formación internacional para mantenerme al día con las tendencias tecnológicas.",
+        image: "images/cert-previews/google-preview.jpg",
+        type: "image",
+        link: "docs/certificados/google.pdf"
     }
 ];

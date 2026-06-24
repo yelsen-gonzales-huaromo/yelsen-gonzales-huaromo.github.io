@@ -127,7 +127,7 @@ export function loadSkills() {
         `).join('');
 
         return `
-            <div class="skills-pro-cat-card" style="--cat-color: ${cat.color};">
+            <div class="skills-pro-cat-card skills-pro-card-item card-${cat.key}" style="--cat-color: ${cat.color};">
                 <div class="skills-pro-cat-head">
                     <span class="skills-pro-cat-label">${escapeHtml(cat.label)}</span>
                     <span class="skills-pro-cat-pct">${cat.level}%</span>
@@ -172,26 +172,24 @@ export function loadSkills() {
         if (!data.focus) return '';
         return `
             <div class="skills-pro-focus">
-                <h4 class="skills-pro-focus-title"><i class="fas fa-bullseye"></i>Enfoque Principal</h4>
+                <h4 class="skills-pro-focus-title"><i class="fas fa-focus"></i>Enfoque Principal</h4>
                 <p class="skills-pro-focus-text">${escapeHtml(data.focus)}</p>
             </div>
         `;
     };
 
     // ===== Assemble layout =====
-    // Balanced 2-column main: radar on the left, category cards in a grid on
-    // the right. With 4 categories the grid is 2×2; auto-fit handles more/less.
-    // On tablet/mobile, columns stack vertically.
+    // Symmetrical grid with the hexagon radar chart in the center, and
+    // cards surrounding it (3 on the left, 3 on the right).
+    // Responsive classes adapt to column layouts on smaller devices.
     techStackContainer.innerHTML = `
         <div class="skills-pro">
-            <!-- Main area: radar | cards grid -->
-            <div class="skills-pro-main">
-                <div class="skills-pro-radar-wrap">
+            <!-- Main area: radar in the middle, cards grid around it -->
+            <div class="skills-pro-main-grid">
+                <div class="skills-pro-radar-center">
                     ${buildRadar()}
                 </div>
-                <div class="skills-pro-grid">
-                    ${categories.map(buildCategoryCard).join('')}
-                </div>
+                ${categories.map(buildCategoryCard).join('')}
             </div>
 
             <!-- Bottom row: others + focus -->

@@ -7,7 +7,7 @@ export function loadProfile() {
     const brand = document.querySelector('.navbar-brand');
     if (brand) {
         brand.innerHTML = `
-            <span class="brand-logo">${data.brandName || '{codeia}'}</span>
+            <span class="brand-logo">${data.brandName || 'YelDev'}</span>
             <span class="brand-separator">|</span>
             <span class="brand-tagline">${data.brandTagline || 'Consultoría & Desarrollo'}</span>
         `;
@@ -39,6 +39,12 @@ export function loadProfile() {
     const aboutQuote = document.querySelector('#about-quote');
     if (aboutQuote && data.aboutQuote) {
         aboutQuote.textContent = `"${data.aboutQuote}"`;
+    }
+
+    // Experience Badge
+    const expBadge = document.querySelector('.experience-badge .h3');
+    if (expBadge && data.yearsOfExperience) {
+        expBadge.textContent = data.yearsOfExperience;
     }
 
     // Render Socials
@@ -85,5 +91,9 @@ function updateSocialCard(platform, url) {
     if (card) {
         const link = card.closest('a');
         if (link && url) link.href = url;
+    }
+    const link3d = document.querySelector(`.social-3d-link.${platform}`);
+    if (link3d && url) {
+        link3d.href = url;
     }
 }

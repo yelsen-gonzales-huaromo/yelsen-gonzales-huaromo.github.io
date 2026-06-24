@@ -1,7 +1,7 @@
 {
-  "name": "codeia-portfolio-security",
+  "name": "yeldev-portfolio-security",
   "version": "1.0.0",
-  "description": "Sistema de seguridad para portafolio {codeia}",
+  "description": "Sistema de seguridad para portafolio YelDev",
   "scripts": {
     "obfuscate": "javascript-obfuscator js --output dist/js --compact true --control-flow-flattening true --dead-code-injection true --debug-protection true --disable-console-output true",
     "build": "npm run obfuscate",
@@ -15,7 +15,7 @@
     "anti-clone",
     "protection"
   ],
-  "author": "Yelsen Gonzales Huaromo - {codeia}",
+  "author": "Yelsen Gonzales Huaromo - YelDev",
   "license": "UNLICENSED",
   "private": true
 }

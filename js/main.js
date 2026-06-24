@@ -71,9 +71,8 @@ function initTheme() {
     const themeToggleBtn = document.getElementById('theme-toggle');
     const icon = themeToggleBtn.querySelector('i');
     const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    let currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    let currentTheme = savedTheme || 'light';
 
     document.documentElement.setAttribute('data-theme', currentTheme);
     updateThemeIcon(icon, currentTheme);
@@ -109,7 +108,7 @@ function loadProfile() {
     const brand = document.querySelector('.navbar-brand');
     if (brand) {
         brand.innerHTML = `
-            <span class="brand-logo">${profileData.brandName || '{codeia}'}</span>
+            <span class="brand-logo">${profileData.brandName || 'YelDev'}</span>
             <span class="brand-separator">|</span>
             <span class="brand-tagline">${profileData.brandTagline || 'Consultoría & Desarrollo'}</span>
         `;
@@ -187,12 +186,18 @@ function loadProfile() {
                 const link = card.closest('a');
                 if (link && url) link.href = url;
             }
+            const link3d = document.querySelector(`.social-3d-link.${platform}`);
+            if (link3d && url) {
+                link3d.href = url;
+            }
         };
 
         updateSocialCard('github', profileData.socialLinks.github);
         updateSocialCard('linkedin', profileData.socialLinks.linkedin);
         updateSocialCard('instagram', profileData.socialLinks.instagram);
         updateSocialCard('tiktok', profileData.socialLinks.tiktok);
+        updateSocialCard('whatsapp', profileData.socialLinks.whatsapp);
+        updateSocialCard('email', profileData.socialLinks.email);
     }
 }
 

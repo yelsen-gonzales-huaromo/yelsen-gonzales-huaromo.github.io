@@ -41,16 +41,20 @@ export function loadEducation() {
         const safeDegree = escapeHtml(edu.degree);
         const safeInstitution = escapeHtml(edu.institution);
         const safeDescription = escapeHtml(edu.description || '');
+        const safeImg = escapeHtml(edu.image || '');
+        const hasImg = !!edu.image && edu.image.trim() !== '';
 
         const clickAttr = preview ? '' : `role="button" tabindex="0" onclick="openEduPreview('${edu.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openEduPreview('${edu.id}')}"`;
-        const classes = preview ? 'kit-card kit-card--preview' : 'kit-card kit-card--clickable';
+        const classes = [
+            preview ? 'kit-card kit-card--preview' : 'kit-card kit-card--clickable',
+            hasImg ? 'kit-card--edu-doc' : ''
+        ].filter(Boolean).join(' ');
 
         return `
         <article class="${classes}" style="--accent-color: ${type.color};" ${clickAttr}>
-            <div class="kit-card-media kit-card-media--decorative">
-                <div class="kit-edu-decor">
-                    <i class="fas ${type.icon}"></i>
-                </div>
+            <div class="kit-card-media${hasImg ? '' : ' kit-card-media--decorative'}">
+                ${hasImg ? `<img src="${safeImg}" alt="${safeDegree}" loading="lazy" onerror="this.style.display='none'; this.parentElement.classList.add('no-image');">` : ''}
+                <div class="kit-card-media-fallback"><i class="fas ${type.icon}"></i></div>
                 <div class="kit-card-media-overlay"></div>
                 <div class="kit-card-top-row">
                     <span class="kit-chip"><i class="fas ${type.icon}"></i>${type.label.toUpperCase()}</span>
@@ -67,6 +71,7 @@ export function loadEducation() {
         </article>
         `;
     };
+
 
     // Split "Junio 2020 - Julio 2025" → { start: "Junio 2020", end: "Julio 2025" }
     // Falls back to a single value if no separator is found.
@@ -95,36 +100,52 @@ export function loadEducation() {
         const { start, end } = splitPeriod(edu.period);
         const ongoing = isOngoing(edu.period);
         const hasLink = edu.link && edu.link !== '#';
-        const hasRealImage = edu.image && edu.image.trim() !== '';
+        const isPdf = edu.link && edu.link.toLowerCase().endsWith('.pdf');
+        const hasRealImage = edu.image && edu.image.trim() !== '' && !edu.image.includes('unsplash.com');
 
-        // ----- Left: styled "diploma" visual ----- (with optional bg image)
-        const certVisual = `
-            <div class="cert-detail-visual ${hasRealImage ? 'cert-detail-visual--image' : ''}">
-                ${hasRealImage ? `<img class="cert-detail-bg-image" src="${escapeHtml(edu.image)}" alt="${escapeHtml(edu.degree)}" loading="lazy">` : ''}
-                <div class="cert-visual-frame">
-                    <div class="cert-visual-issuer-badge">
-                        <i class="fas ${type.icon}"></i>
-                        <span>${escapeHtml(edu.institutionShort || type.label.toUpperCase())}</span>
-                    </div>
-                    <h3 class="cert-visual-title">${escapeHtml(edu.degree)}</h3>
-                    ${edu.subtitle ? `<div class="cert-visual-subtitle">${escapeHtml(edu.subtitle.toUpperCase())}</div>` : ''}
-                    <div class="cert-visual-recipient">
-                        <span class="cert-visual-recipient-label">Otorgado a</span>
-                        <span class="cert-visual-recipient-name">Yelsen Gonzales Huaromo</span>
-                    </div>
-                    ${edu.description ? `<p class="cert-visual-desc">${escapeHtml(edu.description)}</p>` : ''}
-                    <div class="cert-visual-seal">
-                        <i class="fas ${type.icon}"></i>
-                        <span class="cert-seal-text">${ongoing ? 'EN CURSO' : 'CERTIFIED'}</span>
-                        <span class="cert-seal-sub">${escapeHtml(type.label.toUpperCase())}</span>
-                    </div>
-                    <div class="cert-visual-dates">
-                        ${start ? `<div class="cert-visual-date-col"><small>Inicio</small><span>${escapeHtml(start)}</span></div>` : ''}
-                        ${end ? `<div class="cert-visual-date-col"><small>${ongoing ? 'Actualidad' : 'Finalización'}</small><span>${escapeHtml(end)}</span></div>` : ''}
+        // ----- Left: styled certificate visual or PDF embed -----
+        let certVisual = '';
+        if (isPdf) {
+            certVisual = `
+                <div class="cert-detail-visual cert-detail-visual--pdf" style="min-height: 460px; height: 100%;">
+                    <iframe class="cert-detail-pdf-viewer" src="${escapeHtml(edu.link)}#toolbar=0" style="width:100%; height:100%; min-height:460px; border:none; background:#111; border-radius:15px; display:block;"></iframe>
+                </div>
+            `;
+        } else if (hasRealImage) {
+            certVisual = `
+                <div class="cert-detail-visual cert-detail-visual--image-only" style="min-height: 460px; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 16px;">
+                    <img src="${escapeHtml(edu.image)}" alt="${escapeHtml(edu.degree)}" style="width:100%; height:100%; object-fit: contain; background: #0b0f19;">
+                </div>
+            `;
+        } else {
+            certVisual = `
+                <div class="cert-detail-visual" style="min-height: 460px; height: 100%;">
+                    <div class="cert-visual-frame">
+                        <div class="cert-visual-issuer-badge">
+                            <i class="fas ${type.icon}"></i>
+                            <span>${escapeHtml(edu.institutionShort || type.label.toUpperCase())}</span>
+                        </div>
+                        <h3 class="cert-visual-title">${escapeHtml(edu.degree)}</h3>
+                        ${edu.subtitle ? `<div class="cert-visual-subtitle">${escapeHtml(edu.subtitle.toUpperCase())}</div>` : ''}
+                        <div class="cert-visual-recipient">
+                            <span class="cert-visual-recipient-label">Otorgado a</span>
+                            <span class="cert-visual-recipient-name">Yelsen Gonzales Huaromo</span>
+                        </div>
+                        ${edu.description ? `<p class="cert-visual-desc">${escapeHtml(edu.description)}</p>` : ''}
+                        <div class="cert-visual-seal">
+                            <i class="fas ${type.icon}"></i>
+                            <span class="cert-seal-text">${ongoing ? 'EN CURSO' : 'CERTIFIED'}</span>
+                            <span class="cert-seal-sub">${escapeHtml(type.label.toUpperCase())}</span>
+                        </div>
+                        <div class="cert-visual-dates">
+                            ${start ? `<div class="cert-visual-date-col"><small>Inicio</small><span>${escapeHtml(start)}</span></div>` : ''}
+                            ${end ? `<div class="cert-visual-date-col"><small>${ongoing ? 'Actualidad' : 'Finalización'}</small><span>${escapeHtml(end)}</span></div>` : ''}
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
+            `;
+        }
+
 
         // ----- Right top: pill + title + institution + date boxes -----
         const dateBoxes = [];

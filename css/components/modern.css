@@ -97,6 +97,19 @@
     transform: scale(1.06);
 }
 
+/* Education credential previews are portrait documents — contain them so nothing is cut off */
+.kit-card--edu-doc .kit-card-media img {
+    object-fit: contain;
+    object-position: center top;
+}
+.kit-card--edu-doc .kit-card-media {
+    /* Dark mode: near-black. Light mode: a soft cool gray that matches card surface. */
+    background: rgba(10, 14, 28, 0.85);
+}
+[data-theme="light"] .kit-card--edu-doc .kit-card-media {
+    background: rgba(235, 240, 248, 0.95);
+}
+
 .kit-card-media-fallback {
     position: absolute;
     inset: 0;
@@ -3915,29 +3928,56 @@ body.modal-open #scroll-top-btn {
     animation: tree-pulse 1.6s ease-in-out infinite;
 }
 
-/* ----- Main area: 2 cols (radar | cards grid) ----- */
-.skills-pro-main {
+/* ----- Main area: Radar centered, cards around it ----- */
+.skills-pro-main-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-    gap: 1.75rem;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
     align-items: center;
 }
 
-/* Radar wrapper — vertically centered with the cards on its right */
-.skills-pro-radar-wrap {
+@media (min-width: 600px) and (max-width: 991px) {
+    .skills-pro-main-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .skills-pro-radar-center {
+        grid-column: span 2;
+        justify-self: center;
+        width: 100%;
+        max-width: 380px;
+    }
+}
+
+@media (min-width: 992px) {
+    .skills-pro-main-grid {
+        grid-template-columns: 1fr 1.25fr 1fr;
+        grid-template-areas: 
+            "card-1 radar card-2"
+            "card-3 radar card-4"
+            "card-5 radar card-6";
+        gap: 1.5rem;
+        align-items: center;
+    }
+    .card-backend { grid-area: card-1; }
+    .card-frontend { grid-area: card-2; }
+    .card-database { grid-area: card-3; }
+    .card-cloud { grid-area: card-4; }
+    .card-apis { grid-area: card-5; }
+    .card-management { grid-area: card-6; }
+    .skills-pro-radar-center {
+        grid-area: radar;
+        justify-self: center;
+        align-self: center;
+        width: 100%;
+        max-width: 440px;
+    }
+}
+
+.skills-pro-radar-center {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.5rem 0;
-}
-
-/* Cards grid — 2 columns by default (perfect 2×2 with 4 categories).
-   With auto-fit and a sensible min, more categories naturally wrap. */
-.skills-pro-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-    align-items: stretch;
 }
 
 /* ----- Radar chart ----- */
@@ -4133,6 +4173,8 @@ body.modal-open #scroll-top-btn {
     background: rgba(255, 255, 255, 0.025);
     border: 1px solid var(--m-card-border);
     border-radius: 12px;
+    min-width: 0; /* Prevents CSS Grid overflow */
+    overflow: hidden; /* Ensures content wraps or clips cleanly on small screens */
 }
 
 [data-theme="light"] .skills-pro-others,
@@ -4208,6 +4250,10 @@ body.modal-open #scroll-top-btn {
 }
 
 .skills-pro-other i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px; /* Aligns all marquee icons vertically */
     font-size: 1.85rem;
     color: var(--tech-color);
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
@@ -4784,19 +4830,179 @@ body.modal-open #scroll-top-btn {
     font-size: 0.45rem;
 }
 
-.proj-detail-hero-image {
-    position: relative;
-    aspect-ratio: 16 / 11;
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid color-mix(in srgb, var(--accent-color) 22%, transparent);
+.proj-detail-hero-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
 }
 
-.proj-detail-hero-image img {
+.cs-gallery-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.cs-gallery-main-wrapper {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--accent-color) 25%, var(--m-card-border));
+    background: #090d16;
+}
+
+[data-theme="light"] .cs-gallery-main-wrapper {
+    background: #f1f5f9;
+}
+
+.cs-gallery-main-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.cs-gallery-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.cs-gallery-counter {
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+[data-theme="light"] .cs-gallery-counter {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1e293b;
+}
+
+.cs-gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 4;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, background 0.3s, border-color 0.3s, transform 0.2s;
+}
+
+.cs-gallery-main-wrapper:hover .cs-gallery-arrow {
+    opacity: 1;
+}
+
+.cs-gallery-arrow:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #000;
+    transform: translateY(-50%) scale(1.08);
+}
+
+[data-theme="light"] .cs-gallery-arrow {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1e293b;
+}
+
+[data-theme="light"] .cs-gallery-arrow:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #000;
+}
+
+.cs-gallery-prev {
+    left: 1rem;
+}
+
+.cs-gallery-next {
+    right: 1rem;
+}
+
+.cs-gallery-thumbnails {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    scroll-behavior: smooth;
+}
+
+.cs-gallery-thumbnails::-webkit-scrollbar {
+    height: 4px;
+}
+
+.cs-gallery-thumbnails::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 999px;
+}
+
+[data-theme="light"] .cs-gallery-thumbnails::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.cs-gallery-thumbnails::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+}
+
+[data-theme="light"] .cs-gallery-thumbnails::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.cs-gallery-thumbnails::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+.cs-thumb {
+    flex: 0 0 75px;
+    aspect-ratio: 16 / 10;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.25s ease;
+}
+
+.cs-thumb img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+}
+
+.cs-thumb:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+.cs-thumb.is-active {
+    opacity: 1;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--accent-color) 45%, transparent);
 }
 
 .proj-detail-hero-glow {
@@ -4889,13 +5095,106 @@ body.modal-open #scroll-top-btn {
     flex-shrink: 0;
 }
 
-/* Code block */
-.proj-detail-code {
-    margin: 0;
-    padding: 0.75rem 0.85rem;
-    background: rgba(0, 0, 0, 0.35);
+/* Code block and IDE window wrapper */
+.cs-code-editor {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
     border: 1px solid var(--m-card-border);
-    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.7);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    margin-top: 0.85rem;
+}
+
+[data-theme="light"] .cs-code-editor {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.cs-code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0.85rem;
+    background: rgba(15, 23, 42, 0.85);
+    border-bottom: 1px solid var(--m-card-border);
+}
+
+[data-theme="light"] .cs-code-header {
+    background: rgba(241, 245, 249, 0.9);
+}
+
+.cs-code-dots {
+    display: flex;
+    gap: 0.35rem;
+}
+
+.cs-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.cs-dot--red { background-color: #ef4444; }
+.cs-dot--yellow { background-color: #eab308; }
+.cs-dot--green { background-color: #22c55e; }
+
+.cs-code-filename {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.cs-code-copy {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-secondary);
+    font-size: 0.62rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: all 0.2s ease;
+}
+
+[data-theme="light"] .cs-code-copy {
+    border-color: rgba(0, 0, 0, 0.12);
+    color: var(--text-secondary);
+}
+
+.cs-code-copy:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .cs-code-copy:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-primary);
+    border-color: rgba(0, 0, 0, 0.25);
+}
+
+.cs-code-copy.is-copied {
+    background: rgba(34, 197, 94, 0.15);
+    border-color: rgba(34, 197, 94, 0.45);
+    color: #22c55e !important;
+}
+
+.proj-detail-code {
+    margin: 0 !important;
+    padding: 0.85rem 1rem !important;
+    background: rgba(0, 0, 0, 0.25) !important;
+    border: none !important;
+    border-radius: 0 !important;
     overflow-x: auto;
     font-family: 'Consolas', 'Monaco', monospace;
     font-size: 0.65rem;
@@ -4905,7 +5204,7 @@ body.modal-open #scroll-top-btn {
 }
 
 [data-theme="light"] .proj-detail-code {
-    background: rgba(15, 23, 42, 0.08);
+    background: rgba(15, 23, 42, 0.03) !important;
     color: #1f2937;
 }
 
@@ -4930,6 +5229,27 @@ body.modal-open #scroll-top-btn {
     display: flex;
     align-items: center;
     gap: 0.85rem;
+    padding: 0.65rem 0.85rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: transform 0.25s var(--m-ease), border-color 0.25s, box-shadow 0.25s, background-color 0.25s;
+}
+
+[data-theme="light"] .proj-detail-result {
+    background: rgba(15, 23, 42, 0.01);
+    border: 1px solid rgba(15, 23, 42, 0.02);
+}
+
+.proj-detail-result:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--accent-color) 25%, transparent);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .proj-detail-result:hover {
+    background: rgba(15, 23, 42, 0.03);
 }
 
 .proj-detail-result > i {
@@ -5053,83 +5373,110 @@ body.modal-open #scroll-top-btn {
     letter-spacing: 0.02em;
 }
 
-/* Architecture flow — chips with arrows */
-.proj-detail-arch-flow {
+/* Architecture Flow styling */
+.cs-arch-flow {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.65rem;
-    align-items: stretch;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    width: 100%;
 }
 
-.proj-detail-arch-node {
-    flex: 1 1 160px;
+.cs-arch-card {
+    flex: 1 1 180px;
     display: flex;
     align-items: center;
-    gap: 0.65rem;
-    padding: 0.65rem 0.85rem;
-    background: rgba(255, 255, 255, 0.03);
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--m-card-border);
-    border-radius: 10px;
+    border-radius: 12px;
+    transition: all 0.3s var(--m-ease);
     position: relative;
-    transition: border-color 0.3s, background 0.3s, transform 0.3s var(--m-ease);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-[data-theme="light"] .proj-detail-arch-node {
-    background: rgba(15, 23, 42, 0.03);
+[data-theme="light"] .cs-arch-card {
+    background: rgba(15, 23, 42, 0.02);
 }
 
-.proj-detail-arch-node:hover {
-    border-color: color-mix(in srgb, var(--accent-color) 50%, transparent);
-    background: color-mix(in srgb, var(--accent-color) 6%, transparent);
-    transform: translateY(-2px);
+.cs-arch-card:hover {
+    transform: translateY(-3px) scale(1.02);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--accent-color) 15%, rgba(0,0,0,0.2));
+    background: rgba(255, 255, 255, 0.04);
 }
 
-/* Connector arrows between nodes (only on wider screens) */
-.proj-detail-arch-node + .proj-detail-arch-node::before {
-    content: '\f061';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    position: absolute;
-    left: -0.55rem;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--accent-color);
-    font-size: 0.7rem;
-    opacity: 0.6;
+[data-theme="light"] .cs-arch-card:hover {
+    background: rgba(15, 23, 42, 0.04);
 }
 
-.proj-detail-arch-icon {
+.cs-arch-icon {
     flex-shrink: 0;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 9px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--accent-color);
-    font-size: 0.95rem;
-    background: color-mix(in srgb, var(--accent-color) 14%, rgba(15, 23, 42, 0.4));
-    border: 1px solid color-mix(in srgb, var(--accent-color) 35%, transparent);
+    font-size: 1rem;
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
 }
 
-.proj-detail-arch-text {
+[data-theme="light"] .cs-arch-icon {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.cs-arch-card:hover .cs-arch-icon {
+    transform: rotate(6deg) scale(1.1);
+    border-color: var(--accent-color);
+    background: color-mix(in srgb, var(--accent-color) 12%, rgba(15,23,42,0.4));
+}
+
+[data-theme="light"] .cs-arch-card:hover .cs-arch-icon {
+    background: color-mix(in srgb, var(--accent-color) 12%, rgba(255,255,255,0.8));
+}
+
+.cs-arch-body {
     display: flex;
     flex-direction: column;
-    gap: 0.05rem;
+    gap: 0.1rem;
     min-width: 0;
 }
 
-.proj-detail-arch-name {
-    font-size: 0.78rem;
+.cs-arch-name {
+    font-size: 0.76rem;
     font-weight: 700;
     color: var(--text-primary);
-    line-height: 1.2;
+    line-height: 1.25;
+    margin: 0;
 }
 
-.proj-detail-arch-desc {
-    font-size: 0.62rem;
+.cs-arch-desc {
+    font-size: 0.64rem;
     color: var(--text-secondary);
     line-height: 1.3;
+    margin: 0;
+}
+
+.cs-arch-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    opacity: 0.65;
+    padding: 0 0.2rem;
+    animation: connectorPulse 2s infinite ease-in-out;
+}
+
+@keyframes connectorPulse {
+    0%, 100% { opacity: 0.4; transform: scale(0.9); }
+    50% { opacity: 0.85; transform: scale(1.05); }
 }
 
 /* ----- FOOTER ACTIONS ----- */
@@ -5156,8 +5503,12 @@ body.modal-open #scroll-top-btn {
     .proj-detail-three-col {
         grid-template-columns: 1fr;
     }
-    .proj-detail-arch-node + .proj-detail-arch-node::before {
-        display: none;
+    .cs-arch-flow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .cs-arch-connector {
+        padding: 0.3rem 0;
     }
 }
 
@@ -6363,6 +6714,94 @@ body.modal-open #scroll-top-btn {
     pointer-events: none;
 }
 
+.proj-btn--private {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 10px;
+    border: 1px dashed rgba(255, 255, 255, 0.18);
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: default;
+    user-select: none;
+    opacity: 0.7;
+}
+.proj-btn--private i {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+[data-theme="light"] .proj-btn--private {
+    border-color: rgba(15, 23, 42, 0.2);
+    color: var(--text-secondary);
+}
+
+
+/* Light Mode specific rules for .proj-card */
+[data-theme="light"] .proj-card {
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.92),
+        rgba(245, 247, 250, 0.95));
+    border-color: color-mix(in srgb, var(--accent-color) 20%, rgba(148, 163, 184, 0.3));
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.04),
+        0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .proj-card::before {
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--accent-color) 60%, transparent),
+        rgba(168, 85, 247, 0.45));
+}
+
+[data-theme="light"] .proj-card:hover {
+    border-color: color-mix(in srgb, var(--accent-color) 50%, transparent);
+    box-shadow:
+        0 24px 50px color-mix(in srgb, var(--accent-color) 18%, rgba(0, 0, 0, 0.06)),
+        0 4px 16px rgba(168, 85, 247, 0.06);
+}
+
+[data-theme="light"] .proj-card-image {
+    background: linear-gradient(135deg,
+        color-mix(in srgb, var(--accent-color) 10%, transparent),
+        color-mix(in srgb, var(--accent-color) 3%, transparent));
+    border-bottom-color: color-mix(in srgb, var(--accent-color) 15%, rgba(148, 163, 184, 0.2));
+}
+
+[data-theme="light"] .proj-card-image-glow {
+    background:
+        radial-gradient(ellipse at 50% 100%,
+            color-mix(in srgb, var(--accent-color) 12%, transparent) 0%,
+            transparent 60%),
+        linear-gradient(180deg,
+            rgba(255, 255, 255, 0.0) 0%,
+            rgba(255, 255, 255, 0.45) 100%);
+}
+
+[data-theme="light"] .proj-card-image-count {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(148, 163, 184, 0.25);
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .proj-card-stats {
+    border-top-color: color-mix(in srgb, var(--accent-color) 15%, rgba(148, 163, 184, 0.2));
+    border-bottom-color: color-mix(in srgb, var(--accent-color) 15%, rgba(148, 163, 184, 0.2));
+}
+
+[data-theme="light"] .proj-btn--ghost {
+    color: color-mix(in srgb, var(--accent-color) 75%, #0f172a);
+    border-color: color-mix(in srgb, var(--accent-color) 60%, rgba(148, 163, 184, 0.4));
+}
+
+[data-theme="light"] .proj-btn--ghost:hover {
+    background: color-mix(in srgb, var(--accent-color) 10%, rgba(148, 163, 184, 0.15));
+    border-color: color-mix(in srgb, var(--accent-color) 85%, #0f172a);
+    color: var(--text-primary);
+}
+
 /* Marquee context — the proj-card lives inside .kit-marquee-track on the
    main view. Give it a sensible fixed width so the marquee scrolls cleanly. */
 .kit-marquee-track .proj-card {
@@ -7074,4 +7513,144 @@ body.modal-open #scroll-top-btn {
     .cert-visual-seal i {
         font-size: 1.3rem;
     }
+}
+
+/* ==========================================================================
+   VERTICAL ARCHITECTURE FLOW & SOLUTIONS SECTION - COMPACT CASE STUDY
+   ========================================================================== */
+
+/* Tech stack header placement in Hero */
+.proj-detail-hero-tech {
+    margin-top: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    border-top: 1px solid var(--m-card-border);
+    padding-top: 0.85rem;
+}
+
+.proj-detail-hero-tech-label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-secondary);
+}
+
+/* Compact Architecture Flow in Column 2 */
+.cs-arch-flow-compact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.cs-arch-node-compact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.6rem;
+    background: rgba(15, 23, 42, 0.45);
+    border: 1px solid color-mix(in srgb, var(--node-color) 25%, var(--m-card-border));
+    border-radius: 8px;
+    transition: all 0.25s var(--m-ease);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--node-color) 4%, transparent);
+}
+
+[data-theme="light"] .cs-arch-node-compact {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.cs-arch-node-compact:hover {
+    transform: translateY(-2px);
+    border-color: var(--node-color);
+    background: rgba(15, 23, 42, 0.65);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--node-color) 25%, transparent);
+}
+
+[data-theme="light"] .cs-arch-node-compact:hover {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.cs-arch-icon-compact {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--node-color);
+    background: color-mix(in srgb, var(--node-color) 10%, rgba(15, 23, 42, 0.5));
+    border: 1px solid color-mix(in srgb, var(--node-color) 20%, rgba(255, 255, 255, 0.08));
+    transition: transform 0.3s ease;
+}
+
+.cs-arch-node-compact:hover .cs-arch-icon-compact {
+    transform: rotate(8deg) scale(1.1);
+}
+
+.cs-arch-info-compact {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.cs-arch-name-compact {
+    font-size: 0.72rem;
+    font-weight: 750;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.cs-arch-desc-compact {
+    font-size: 0.58rem;
+    color: var(--text-secondary);
+    line-height: 1.25;
+}
+
+.cs-arch-connector-compact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 0.6rem;
+    opacity: 0.45;
+    padding: 0 0.1rem;
+    animation: connectorPulseHorizontal 2s infinite ease-in-out;
+}
+
+@keyframes connectorPulseHorizontal {
+    0%, 100% { opacity: 0.35; transform: scale(0.9); }
+    50% { opacity: 0.75; transform: scale(1.05); }
+}
+
+@media (max-width: 576px) {
+    .cs-arch-connector-compact {
+        display: none; /* Hide connectors when wrapping on very small screens */
+    }
+    .cs-arch-flow-compact {
+        gap: 0.4rem;
+    }
+}
+
+/* Subtitle for Architecture under Solution text */
+.cs-arch-sub-title {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+    margin: 1rem 0 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    border-top: 1px solid var(--m-card-border);
+    padding-top: 0.75rem;
+}
+
+.cs-arch-sub-title i {
+    color: var(--accent-color);
 }

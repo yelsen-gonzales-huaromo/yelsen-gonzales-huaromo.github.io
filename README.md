@@ -81,5 +81,5 @@ npx serve .
 
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=100&section=footer" width="100%" />
-  <p><b>© 2026 {codeia} | Innovación y Desarrollo</b></p>
+  <p><b>© 2026 YelDev | Innovación y Desarrollo</b></p>
 </div>

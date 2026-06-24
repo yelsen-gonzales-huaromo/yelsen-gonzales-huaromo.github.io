@@ -171,49 +171,62 @@ export function loadCertificates() {
 
         const issuerStyle = getIssuerStyle(cert.issuer);
         const hasLink = cert.link && cert.link !== '#';
-        // Real certificate image — when present, used as the diploma background
-        // (so the actual document can be inspected at detail). Stock photos are
-        // ignored so we don't show unrelated imagery.
+        const isPdf = cert.link && cert.link.toLowerCase().endsWith('.pdf');
         const hasRealImage = cert.image
             && cert.image.trim() !== ''
             && !cert.image.includes('unsplash.com');
 
-        // ----- Left: styled certificate "diploma" visual -----
-        const certVisual = `
-            <div class="cert-detail-visual ${hasRealImage ? 'cert-detail-visual--image' : ''}">
-                ${hasRealImage ? `<img class="cert-detail-bg-image" src="${escapeHtml(cert.image)}" alt="${escapeHtml(cert.title)}" loading="lazy">` : ''}
-                <div class="cert-visual-frame">
-                    <div class="cert-visual-issuer-badge">
-                        <i class="${issuerStyle.icon}"></i>
-                        <span>${escapeHtml(cert.issuerShort || issuerStyle.abbr)}</span>
-                    </div>
-                    <h3 class="cert-visual-title">${escapeHtml(cert.title)}</h3>
-                    ${cert.subtitle ? `<div class="cert-visual-subtitle">${escapeHtml(cert.subtitle.toUpperCase())}</div>` : ''}
-                    <div class="cert-visual-recipient">
-                        <span class="cert-visual-recipient-label">Se otorga a</span>
-                        <span class="cert-visual-recipient-name">Yelsen Gonzales Huaromo</span>
-                    </div>
-                    ${cert.description ? `<p class="cert-visual-desc">${escapeHtml(cert.description)}</p>` : ''}
-                    <div class="cert-visual-seal">
-                        <i class="${issuerStyle.icon}"></i>
-                        <span class="cert-seal-text">CERTIFIED</span>
-                        <span class="cert-seal-sub">${escapeHtml(cert.subtitle || cert.level || '')}</span>
-                    </div>
-                    <div class="cert-visual-dates">
-                        <div class="cert-visual-date-col">
-                            <small>Fecha de emisión</small>
-                            <span>${escapeHtml(cert.date || '—')}</span>
+        // ----- Left: styled certificate visual or PDF embed -----
+        let certVisual = '';
+        if (isPdf) {
+            certVisual = `
+                <div class="cert-detail-visual cert-detail-visual--pdf" style="min-height: 460px; height: 100%;">
+                    <iframe class="cert-detail-pdf-viewer" src="${escapeHtml(cert.link)}#toolbar=0" style="width:100%; height:100%; min-height:460px; border:none; background:#111; border-radius:15px; display:block;"></iframe>
+                </div>
+            `;
+        } else if (hasRealImage) {
+            certVisual = `
+                <div class="cert-detail-visual cert-detail-visual--image-only" style="min-height: 460px; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 16px;">
+                    <img src="${escapeHtml(cert.image)}" alt="${escapeHtml(cert.title)}" style="width:100%; height:100%; object-fit: contain; background: #0b0f19;">
+                </div>
+            `;
+        } else {
+            certVisual = `
+                <div class="cert-detail-visual" style="min-height: 460px; height: 100%;">
+                    <div class="cert-visual-frame">
+                        <div class="cert-visual-issuer-badge">
+                            <i class="${issuerStyle.icon}"></i>
+                            <span>${escapeHtml(cert.issuerShort || issuerStyle.abbr)}</span>
                         </div>
-                        ${cert.validUntil ? `
+                        <h3 class="cert-visual-title">${escapeHtml(cert.title)}</h3>
+                        ${cert.subtitle ? `<div class="cert-visual-subtitle">${escapeHtml(cert.subtitle.toUpperCase())}</div>` : ''}
+                        <div class="cert-visual-recipient">
+                            <span class="cert-visual-recipient-label">Se otorga a</span>
+                            <span class="cert-visual-recipient-name">Yelsen Gonzales Huaromo</span>
+                        </div>
+                        ${cert.description ? `<p class="cert-visual-desc">${escapeHtml(cert.description)}</p>` : ''}
+                        <div class="cert-visual-seal">
+                            <i class="${issuerStyle.icon}"></i>
+                            <span class="cert-seal-text">CERTIFIED</span>
+                            <span class="cert-seal-sub">${escapeHtml(cert.subtitle || cert.level || '')}</span>
+                        </div>
+                        <div class="cert-visual-dates">
                             <div class="cert-visual-date-col">
-                                <small>Válida hasta</small>
-                                <span>${escapeHtml(cert.validUntil)}</span>
+                                <small>Fecha de emisión</small>
+                                <span>${escapeHtml(cert.date || '—')}</span>
                             </div>
-                        ` : ''}
+                            ${cert.validUntil ? `
+                                <div class="cert-visual-date-col">
+                                    <small>Válida hasta</small>
+                                    <span>${escapeHtml(cert.validUntil)}</span>
+                                </div>
+                            ` : ''}
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
+            `;
+        }
+
 
         // ----- Right top: category pill + title + issuer + date boxes -----
         const categoryLabel = (cert.level && /grado|profesional|associate/i.test(cert.level))
